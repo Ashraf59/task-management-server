@@ -21,7 +21,7 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 async function run(){
     try{
         const addtaskCollection = client.db('taskManagement').collection('addtask');
-
+       
         app.get('/addtasks', async(req, res) => {
             const query = {}
             const addtask = await addtaskCollection.find(query).toArray();
@@ -39,7 +39,10 @@ async function run(){
             const filter = {_id: ObjectId(id)};
             const result = await addtaskCollection.deleteOne(filter);
             res.send(result)
-        })
+        });
+
+      
+
     }
     finally{
        
